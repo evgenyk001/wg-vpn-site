@@ -17,18 +17,24 @@
       padding: 10px;
       text-align: center;
     }
-    nav a {
+    nav button {
+      background: none;
+      border: none;
       color: #38bdf8;
       margin: 0 15px;
-      text-decoration: none;
       font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
     }
-    nav a:hover {
+    nav button:hover {
       color: #ffffff;
     }
-    section {
+    .section {
+      display: none;
       padding: 40px 20px;
-      border-bottom: 1px solid #334155;
+    }
+    .active {
+      display: block;
     }
     h2 {
       color: #38bdf8;
@@ -38,37 +44,45 @@
 <body>
 
   <nav>
-    <a href="#about">О сервисе</a>
-    <a href="#rules">Правила</a>
-    <a href="#privacy">Конфиденциальность</a>
-    <a href="#contacts">Контакты</a>
-    <a href="#faq">FAQ</a>
+    <button onclick="showSection('about')">О сервисе</button>
+    <button onclick="showSection('rules')">Правила</button>
+    <button onclick="showSection('privacy')">Конфиденциальность</button>
+    <button onclick="showSection('contacts')">Контакты</button>
+    <button onclick="showSection('faq')">FAQ</button>
   </nav>
 
-  <section id="about">
+  <div id="about" class="section active">
     <h2>О сервисе</h2>
     <p>...</p>
-  </section>
+  </div>
 
-  <section id="rules">
+  <div id="rules" class="section">
     <h2>Правила пользования</h2>
     <p>...</p>
-  </section>
+  </div>
 
-  <section id="privacy">
+  <div id="privacy" class="section">
     <h2>Политика конфиденциальности</h2>
     <p>...</p>
-  </section>
+  </div>
 
-  <section id="contacts">
+  <div id="contacts" class="section">
     <h2>Контакты</h2>
     <p>Telegram-бот: <a href="https://t.me/WGVPN_official_bot" target="_blank">@WGVPN_official_bot</a></p>
-  </section>
+  </div>
 
-  <section id="faq">
+  <div id="faq" class="section">
     <h2>FAQ</h2>
     <p>...</p>
-  </section>
+  </div>
+
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
