@@ -6,52 +6,98 @@
   <title>WG VPN</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
       background-color: #0f172a;
       color: #f1f5f9;
-      margin: 0;
-      padding: 0;
     }
-    nav {
+
+    /* Верхняя панель */
+    header {
       background-color: #1e293b;
-      padding: 10px;
-      text-align: center;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    nav button {
+
+    .menu-btn {
+      font-size: 24px;
+      color: #38bdf8;
       background: none;
       border: none;
-      color: #38bdf8;
-      margin: 0 15px;
-      font-weight: bold;
-      font-size: 16px;
       cursor: pointer;
     }
-    nav button:hover {
+
+    /* Боковое меню */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #1e293b;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #38bdf8;
+      padding: 15px 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .sidebar a:hover {
+      background-color: #334155;
       color: #ffffff;
     }
+
+    /* Контент */
     .section {
       display: none;
       padding: 40px 20px;
     }
+
     .active {
       display: block;
     }
-    h2 {
+
+    h1, h2 {
       color: #38bdf8;
+    }
+
+    /* Приветствие */
+    #welcome {
+      display: block;
+      text-align: center;
+      padding: 60px 20px;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <button onclick="showSection('about')">О сервисе</button>
-    <button onclick="showSection('rules')">Правила</button>
-    <button onclick="showSection('privacy')">Конфиденциальность</button>
-    <button onclick="showSection('contacts')">Контакты</button>
-    <button onclick="showSection('faq')">FAQ</button>
-  </nav>
+  <header>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <h1>WG VPN</h1>
+  </header>
 
-  <div id="about" class="section active">
+  <div class="sidebar" id="sidebar">
+    <a href="#" onclick="showSection('about')">О сервисе</a>
+    <a href="#" onclick="showSection('rules')">Правила</a>
+    <a href="#" onclick="showSection('privacy')">Конфиденциальность</a>
+    <a href="#" onclick="showSection('contacts')">Контакты</a>
+    <a href="#" onclick="showSection('faq')">FAQ</a>
+  </div>
+
+  <div id="welcome" class="section active">
+    <h2>Добро пожаловать в WG VPN</h2>
+    <p>Надёжный и быстрый VPN-сервис на базе WireGuard. Выберите раздел в меню ☰</p>
+  </div>
+
+  <div id="about" class="section">
     <h2>О сервисе</h2>
     <p>...</p>
   </div>
@@ -77,10 +123,16 @@
   </div>
 
   <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
+    }
+
     function showSection(id) {
       const sections = document.querySelectorAll('.section');
       sections.forEach(section => section.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      toggleMenu();
     }
   </script>
 
