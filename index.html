@@ -5,28 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WG VPN</title>
   <style>
+    :root {
+      --red-500: #9A1E25;
+      --red-700: #7A161C;
+      --red-hover: #B2222C;
+      --white: #ffffff;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0f172a;
-      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--red-500);
+      color: var(--white);
     }
 
     /* Верхняя панель */
     header {
-      background-color: #1e293b;
+      background-color: var(--red-700);
       padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      z-index: 1000;
     }
 
     .menu-btn {
       font-size: 24px;
-      color: #38bdf8;
+      color: var(--white);
       background: none;
       border: none;
       cursor: pointer;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo {
+      height: 40px;
+      width: auto;
+      margin-right: 10px;
     }
 
     /* Боковое меню */
@@ -36,29 +61,28 @@
       left: -250px;
       width: 250px;
       height: 100%;
-      background-color: #1e293b;
+      background-color: var(--red-700);
       padding-top: 60px;
       transition: left 0.3s ease;
-      z-index: 1000;
+      z-index: 999;
     }
 
     .sidebar a {
       display: block;
-      color: #38bdf8;
+      color: var(--white);
       padding: 15px 20px;
       text-decoration: none;
       font-weight: bold;
     }
 
     .sidebar a:hover {
-      background-color: #334155;
-      color: #ffffff;
+      background-color: var(--red-hover);
     }
 
     /* Контент */
     .section {
       display: none;
-      padding: 40px 20px;
+      padding: 80px 20px 40px;
     }
 
     .active {
@@ -66,22 +90,23 @@
     }
 
     h1, h2 {
-      color: #38bdf8;
+      color: var(--white);
     }
 
     /* Приветствие */
     #welcome {
-      display: block;
       text-align: center;
-      padding: 60px 20px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-    <h1>WG VPN</h1>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Открыть меню">☰</button>
+    <a href="/" class="brand">
+      <img src="./logo-wg.png" alt="WG VPN Logo" class="logo">
+      <span style="font-weight:700;font-size:18px;">WG VPN</span>
+    </a>
   </header>
 
   <div class="sidebar" id="sidebar">
@@ -94,7 +119,7 @@
 
   <div id="welcome" class="section active">
     <h2>Добро пожаловать в WG VPN</h2>
-    <p>Надёжный и быстрый VPN-сервис на базе WireGuard. Выберите раздел в меню ☰</p>
+    <p>Надёжный и быстрый VPN-сервис на базе WireGuard.</p>
   </div>
 
   <div id="about" class="section">
