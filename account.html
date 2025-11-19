@@ -7,6 +7,28 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .centered {
+      text-align: center;
+    }
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .device-box {
+      background-color: #2a2a2a;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    .tariff {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -17,21 +39,21 @@
     </div>
 
     <!-- Баланс -->
-    <div class="intro">
+    <div class="centered">
       <h2>Баланс</h2>
       <p style="font-size: 28px; font-weight: bold; color: #e53935;">179 ₽</p>
-      <p style="color: #ff9800; font-weight: bold;">Хеатит на -54 дня</p>
+      <p style="color: #ff9800; font-weight: bold;">Хватит на -54 дня</p>
       <div class="button-row">
-  <a href="#" class="link">Пополнить</a>
-  <a href="#" class="link">История</a>
-</div>
+        <a href="#" class="link">Пополнить</a>
+        <a href="#" class="link">История</a>
+      </div>
     </div>
 
     <!-- Устройства -->
-    <div class="intro">
+    <div class="centered">
       <h2>Мои устройства</h2>
       <p>Подключено: 1</p>
-      <div style="background-color: #2a2a2a; padding: 12px; border-radius: 8px; margin: 10px 0;">
+      <div class="device-box">
         <p><strong>29587712 App (iPhone/iPad)</strong></p>
         <p style="color: #ccc;">Добавлено 31.12.2024</p>
       </div>
@@ -39,8 +61,8 @@
     </div>
 
     <!-- Тариф -->
-    <div class="intro">
-      <p style="text-align: center; font-weight: bold;">Тариф: 100₽/мес за одно устройство</p>
+    <div class="tariff">
+      <p>Тариф: 99₽/мес за одно устройство</p>
     </div>
 
     <!-- Назад -->
