@@ -95,3 +95,11 @@ html, body {
   color: #666;
   padding: 20px 0;
 }
+
+/* Горизонтальное расположение кнопок */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
