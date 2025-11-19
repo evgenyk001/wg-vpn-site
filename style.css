@@ -222,17 +222,17 @@ html, body {
   }
 
   .btn-red {
-    width: 100%;
-    max-width: none;
+    width: 100% !important;
+     max-width: none !important;
   }
 
-.button-pair {
+  .button-pair {
     flex-direction: column;
     gap: 12px;
   }
 
   .button-pair a {
-    width: 100%;
-    max-width: none;
+    width: 100% !important;
+    max-width: none !important;
   }
 }
