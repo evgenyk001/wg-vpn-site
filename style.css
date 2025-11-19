@@ -254,3 +254,50 @@ html, body {
     text-align: center;
   }
 }
+/* ------------------------------
+   Десктопная адаптация
+------------------------------ */
+@media (min-width: 768px) {
+  .container {
+    max-width: 640px;
+  }
+
+  .btn,
+  .btn-red,
+  .button-pair a {
+    max-width: 220px;
+  }
+
+  .button-row,
+  .button-pair {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .link {
+    width: 140px;
+  }
+
+  .intro h2 {
+    font-size: 28px;
+  }
+
+  .intro p {
+    font-size: 18px;
+  }
+
+  .section {
+    padding: 30px;
+  }
+
+  .balance-box {
+    max-width: 360px;
+  }
+}
