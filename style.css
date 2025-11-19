@@ -24,14 +24,25 @@ html, body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Логотип */
+/* ✅ Логотип — как на главной */
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0;
+  background: none;
+}
+
 .logo img {
-  width: 330px;
-  max-width: 90%;
-  margin: 40px auto 20px;
   display: block;
-  background-color: #1a1a1a;
-  border-radius: 12px;
+  margin: 0 auto;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
 }
 
 /* Заголовок и описание */
@@ -102,8 +113,32 @@ html, body {
   justify-content: center;
   gap: 10px;
   margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
+/* ✅ Кнопки одинаковые */
+.btn-red {
+  background-color: #a31b1b;
+  color: white;
+  text-align: center;
+  padding: 0;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
+  width: 45%;
+  min-width: 140px;
+  max-width: 180px;
+  height: 50px;
+  line-height: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-red:hover {
+  background-color: #c62828;
+}
+
+/* Баланс */
 .balance-box {
   background-color: #1a1a1a;
   border: 1px solid #333;
@@ -111,4 +146,17 @@ html, body {
   padding: 15px;
   margin: 20px auto;
   max-width: 300px;
+}
+
+/* Адаптация под мобильные */
+@media (max-width: 480px) {
+  .button-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-red {
+    width: 100%;
+    max-width: none;
+  }
 }
