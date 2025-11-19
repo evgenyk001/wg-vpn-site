@@ -263,10 +263,15 @@ html, body {
   }
 
   .btn,
-  .btn-red,
-  .button-pair a {
-    max-width: 260px;
-  }
+.btn-red,
+.button-pair a {
+  max-width: 280px;
+  white-space: normal;
+  word-wrap: break-word;
+  font-size: 16px;
+  line-height: 1.3;
+  padding: 14px 20px;
+}
 
   .button-row,
   .button-pair {
