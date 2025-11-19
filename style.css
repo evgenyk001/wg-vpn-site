@@ -1,19 +1,24 @@
-body {
-  height: 100;
+/* Общие стили */
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: 'Inter', sans-serif;
   background-color: #1a1a1a;
   color: white;
 }
 
+/* Контейнер на весь экран */
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 40px 20px;
+  box-sizing: border-box;
 }
 
+/* Логотип */
 .logo img {
   width: 160px;
   max-width: 80%;
@@ -21,54 +26,61 @@ body {
   display: block;
 }
 
-.logo h1 {
-  font-size: 28px;
-  color: #a31b1b;
-  margin: 10px 0;
-}
-
-.logo h1 span {
-  color: white;
-}
-
+/* Заголовок и описание */
 .intro h2 {
-  font-size: 22px;
-  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .intro p {
-  color: #aaa;
+  font-size: 16px;
+  text-align: center;
+  color: #ccc;
   margin-bottom: 20px;
 }
 
+/* Кнопка Telegram */
 .btn {
-  display: inline-block;
+  display: block;
   background-color: #a31b1b;
   color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
+  margin: 0 auto 30px;
+  max-width: 300px;
 }
 
+/* Меню */
 .links {
-  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
 }
 
 .link {
-  display: block;
+  background-color: #2a2a2a;
   color: white;
   text-decoration: none;
-  margin: 10px 0;
+  padding: 14px;
+  border-radius: 8px;
   font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .link:hover {
-  color: #a31b1b;
+  background-color: #a31b1b;
 }
 
+/* Футер */
 .footer {
-  margin-top: 40px;
-  color: #666;
+  text-align: center;
   font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
 }
