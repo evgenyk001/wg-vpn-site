@@ -228,6 +228,7 @@ html, body {
 
 .button-pair {
     flex-direction: column;
+    gap: 12px;
   }
 
   .button-pair a {
