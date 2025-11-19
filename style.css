@@ -29,7 +29,7 @@ html, body {
 }
 
 /* ------------------------------
-   Логотип (универсальный)
+   Логотип
 ------------------------------ */
 .logo {
   text-align: center;
@@ -146,7 +146,7 @@ html, body {
 }
 
 /* ------------------------------
-   Красные кнопки (универсальные)
+   Красные кнопки
 ------------------------------ */
 .btn-red {
   background-color: #a31b1b;
@@ -201,11 +201,11 @@ html, body {
   font-weight: bold;
   font-size: 16px;
   text-align: center;
+  width: 45%;
   min-width: 140px;
   max-width: 180px;
-  flex: 1;
-  transition: background-color 0.3s ease;
   display: inline-block;
+  transition: background-color 0.3s ease;
 }
 
 .button-pair a:hover {
@@ -222,6 +222,15 @@ html, body {
   }
 
   .btn-red {
+    width: 100%;
+    max-width: none;
+  }
+
+.button-pair {
+    flex-direction: column;
+  }
+
+  .button-pair a {
     width: 100%;
     max-width: none;
   }
