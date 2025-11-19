@@ -204,7 +204,7 @@ html, body {
   width: 45%;
   min-width: 140px;
   max-width: 180px;
-  display: inline-block;
+  display: block;
   transition: background-color 0.3s ease;
 }
 
@@ -222,8 +222,8 @@ html, body {
   }
 
   .btn-red {
-    width: 100% !important;
-     max-width: none !important;
+    width: 100%;
+    max-width: none;
   }
 
   .button-pair {
@@ -232,7 +232,7 @@ html, body {
   }
 
   .button-pair a {
-    width: 100% !important;
-    max-width: none !important;
+    width: 100%;
+    max-width: none;
   }
 }
