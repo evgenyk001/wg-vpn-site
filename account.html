@@ -3,45 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WG VPN</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <!-- Шрифты -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>Личный кабинет — WG VPN</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- SEO и Telegram -->
-  <meta name="description" content="WG VPN — быстрый и надёжный VPN на базе WireGuard. Подключение через Telegram-бота.">
-  <meta property="og:title" content="WG VPN">
-  <meta property="og:image" content="https://wg-vpn.ru/logo-wg.png">
-  <meta property="og:description" content="Мгновенное подключение через Telegram-бота.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wg-vpn.ru">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
+
+    <!-- Логотип -->
     <div class="logo">
       <img src="logo-wg.png" alt="WG VPN Logo">
     </div>
 
-    <div class="intro">
-      <h2>Надёжный и быстрый VPN</h2>
-      <p>Сервис на базе WireGuard с мгновенным подключением через Telegram-бота</p>
-      <a href="https://t.me/WGVPN_official_bot" target="_blank" class="btn">Открыть Telegram-бота</a>
+    <!-- Баланс -->
+    <div class="block">
+      <h2>Баланс</h2>
+      <p class="amount">179 ₽</p>
+      <p class="status warning">Хеатит на -54 дня</p>
+      <div class="buttons">
+        <a href="#" class="btn">Пополнить</a>
+        <a href="#" class="btn secondary">История</a>
+      </div>
     </div>
 
-    <div class="links">
-      <a href="account.html" class="link">Личный кабинет</a>
-      <a href="#pricing" class="link">Тарифы</a>
-      <a href="#connect" class="link">Как подключиться</a>
-      <a href="#faq" class="link">FAQ</a>
+    <!-- Устройства -->
+    <div class="block">
+      <h2>Мои устройства</h2>
+      <p>Подключено: 1</p>
+      <div class="device">
+        <p><strong>29587712 App (iPhone/iPad)</strong></p>
+        <p>Добавлено 31.12.2024</p>
+      </div>
+      <a href="#" class="btn">Добавить</a>
     </div>
 
+    <!-- Тариф -->
+    <div class="block">
+      <p class="tariff">Тариф: 100₽/мес за одно устройство</p>
+    </div>
+
+    <!-- Назад -->
     <div class="footer">
-      <p>© WG VPN, 2025</p>
+      <a href="index.html" class="link">← Назад на главную</a>
     </div>
+
   </div>
 </body>
 </html>
