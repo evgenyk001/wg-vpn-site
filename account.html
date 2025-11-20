@@ -60,8 +60,8 @@
     </div>
 
     <!-- Кнопка назад -->
-<div style="text-align: center; margin: 20px 0;">
-  <a href="index.html" style="
+<style>
+  .back-button {
     display: inline-block;
     background-color: #222;
     color: #fff;
@@ -73,9 +73,18 @@
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
-  ">
-    Назад на главную
-  </a>
+    text-align: center;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+  }
+
+  .back-button:active {
+    transform: scale(0.98);
+    background-color: #333;
+  }
+</style>
+
+<div style="text-align: center; margin: 20px 0;">
+  <a href="index.html" class="back-button">Назад на главную</a>
 </div>
     
     <!-- Навигация -->
