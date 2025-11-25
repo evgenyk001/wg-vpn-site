@@ -105,7 +105,7 @@ window.onload = function () {
     return;
   }
 
-  fetch(`https://31.130.132.106:5000/api/user/${tgId}`)
+  fetch(`https://api.wg-vpn.ru/api/user/${tgId}`)
     .then(response => response.json())
     .then(data => {
       if (data.error) {
