@@ -94,7 +94,16 @@
 
   </div>
   <script>
-  const tgId = 8082505779; // Telegram ID пользователя
+window.onload = function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const tgId = urlParams.get('user_id');
+
+  if (!tgId) {
+    document.getElementById('balance').textContent = 'Ошибка';
+    document.getElementById('days_left').textContent = '-';
+    document.getElementById('tariff').textContent = '-';
+    return;
+  }
 
   fetch(`http://31.130.132.106:5000/api/user/${tgId}`)
     .then(response => response.json())
@@ -120,6 +129,7 @@
       document.getElementById('tariff').textContent = '-';
       console.error('Ошибка запроса:', error);
     });
+};
 </script>
 </body>
 </html>
