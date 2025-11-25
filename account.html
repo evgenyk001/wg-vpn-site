@@ -99,7 +99,7 @@ window.onload = function () {
   const tgId = urlParams.get('user_id');
 
   if (!tgId) {
-    document.getElementById('balance').textContent = 'Ошибка';
+    document.getElementById('balance').textContent = 'Ошибка: нет user_id';
     document.getElementById('days_left').textContent = '-';
     document.getElementById('tariff').textContent = '-';
     return;
@@ -116,12 +116,14 @@ window.onload = function () {
       }
 
       // Баланс — показываем бонус
-      document.getElementById('balance').textContent = `${data.bonus || 0} ₽`;
+      const bonus = typeof data.bonus === 'number' ? data.bonus : 0;
+      document.getElementById('balance').textContent = `${bonus} ₽`;
 
       // Считаем дни до окончания
+      const rawDate = data.expires.split(' ')[0]; // "2025-11-27"
+      const expires = new Date(rawDate + 'T00:00:00'); // безопасный формат
       const today = new Date();
-      const expires = new Date(data.expires);
-      const diffDays = Math.ceil((expires - today) / (1000 * 60 * 60 * 24));
+      const diffDays = Math.max(0, Math.ceil((expires - today) / (1000 * 60 * 60 * 24)));
       document.getElementById('days_left').textContent = `Осталось ${diffDays} дней`;
 
       // Тариф
