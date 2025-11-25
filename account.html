@@ -105,7 +105,7 @@ window.onload = function () {
     return;
   }
 
-  fetch(`http://31.130.132.106:5000/api/user/${tgId}`)
+  fetch(`https://31.130.132.106:5000/api/user/${tgId}`)
     .then(response => response.json())
     .then(data => {
       if (data.error) {
