@@ -93,5 +93,33 @@
 </div>
 
   </div>
+  <script>
+  const tgId = 8082505779; // Telegram ID пользователя
+
+  fetch(`http://31.130.132.106:5000/api/user/${tgId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById('balance').textContent = 'Ошибка';
+        document.getElementById('days_left').textContent = '-';
+        document.getElementById('tariff').textContent = '-';
+      } else {
+        document.getElementById('balance').textContent = data.balance + ' ₽';
+
+        const today = new Date();
+        const expires = new Date(data.expires_at);
+        const diffDays = Math.ceil((expires - today) / (1000 * 60 * 60 * 24));
+        document.getElementById('days_left').textContent = `Осталось ${diffDays} дней`;
+
+        document.getElementById('tariff').textContent = data.vpn_status === 'active' ? 'Активен' : 'Неактивен';
+      }
+    })
+    .catch(error => {
+      document.getElementById('balance').textContent = 'Ошибка';
+      document.getElementById('days_left').textContent = '-';
+      document.getElementById('tariff').textContent = '-';
+      console.error('Ошибка запроса:', error);
+    });
+</script>
 </body>
 </html>
