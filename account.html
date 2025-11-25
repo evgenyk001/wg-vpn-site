@@ -20,8 +20,8 @@
     <div class="section">
       <h2>Баланс</h2>
       <div class="balance-box">
-        <div class="balance">179 ₽</div>
-        <div class="status">Хватит на -54 дня</div>
+        <div class="balance" id="balance">...</div>
+        <div class="status" id="days_left">...</div>
       </div>
       <div class="button-row">
         <a href="#" class="btn-red">Пополнить</a>
@@ -32,11 +32,7 @@
     <!-- Устройства -->
     <div class="section">
       <h2>Мои устройства</h2>
-      <p>Подключено: 1</p>
-      <div class="device-box">
-        <p><strong>29587712 App (iPhone/iPad)</strong></p>
-        <p>Добавлено 31.12.2024</p>
-      </div>
+      <div id="devices-container"></div>
       <div style="margin-top: 20px;">
         <a href="#" class="link">Добавить</a>
       </div>
@@ -44,7 +40,7 @@
 
     <!-- Тариф -->
     <div class="section">
-      <p class="tariff">Тариф: 99₽/мес за одно устройство</p>
+      <p class="tariff" id="tariff">...</p>
     </div>
 
     <!-- Рефералка -->
