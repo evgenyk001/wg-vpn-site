@@ -158,6 +158,28 @@ window.onload = function () {
         div.textContent = 'Нет подключённых устройств';
         container.appendChild(div);
       }
+
+      // === Автоматическое добавление текущего устройства ===
+      const deviceType = detectDeviceType();
+      const deviceId = generateDeviceId();
+
+      const alreadyExists = Array.isArray(data.devices) && data.devices.some(d => d.id === deviceId);
+      if (!alreadyExists) {
+        fetch(`https://api.wg-vpn.ru/api/user/${tgId}/add-device`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: deviceId, type: deviceType })
+        })
+        .then(res => res.json())
+        .then(res => {
+          console.log("Устройство добавлено:", res);
+          // Можно перезагрузить страницу, чтобы сразу увидеть новое устройство
+          location.reload();
+        })
+        .catch(err => {
+          console.error("Ошибка добавления устройства:", err);
+        });
+      }
     })
     .catch(error => {
       document.getElementById('balance').textContent = 'Ошибка';
@@ -167,6 +189,25 @@ window.onload = function () {
       console.error('Ошибка запроса:', error);
     });
 };
+
+// Определение типа устройства
+function detectDeviceType() {
+  const ua = navigator.userAgent;
+
+  if (/android/i.test(ua)) return "Android";
+  if (/iPad|iPhone|iPod/.test(ua)) return "iOS";
+  if (/Windows/.test(ua)) return "Windows";
+  if (/Macintosh/.test(ua)) return "macOS";
+  if (/Linux/.test(ua)) return "Linux";
+
+  return "Неизвестное устройство";
+}
+
+// Генерация ID устройства (можно заменить на что-то более стабильное)
+function generateDeviceId() {
+  const base = navigator.userAgent + navigator.platform;
+  return 'dev-' + btoa(base).substr(0, 10);
+}
 </script>
 </body>
 </html>
