@@ -99,17 +99,16 @@ window.onload = function () {
   const urlId = urlParams.get('user_id');
 
   if (urlId) {
-    // Сохраняем ID из URL в localStorage
     localStorage.setItem('tg_id', urlId);
   }
 
-  // Берём ID из localStorage (если есть)
   const tgId = localStorage.getItem('tg_id');
 
   if (!tgId) {
     document.getElementById('balance').textContent = 'Ошибка: нет user_id';
     document.getElementById('days_left').textContent = '-';
     document.getElementById('tariff').textContent = '-';
+    document.getElementById('devices-container').textContent = 'Ошибка: нет user_id';
     return;
   }
 
@@ -120,15 +119,16 @@ window.onload = function () {
         document.getElementById('balance').textContent = 'Ошибка';
         document.getElementById('days_left').textContent = '-';
         document.getElementById('tariff').textContent = '-';
+        document.getElementById('devices-container').textContent = 'Ошибка загрузки устройств';
         return;
       }
 
-      // Баланс — показываем бонус
+      // Баланс
       const bonus = typeof data.bonus === 'number' ? data.bonus : 0;
       document.getElementById('balance').textContent = `${bonus} ₽`;
 
-      // Считаем дни до окончания
-      const rawDate = data.expires.split(' ')[0]; // "2025-11-27"
+      // Дни до окончания
+      const rawDate = data.expires.split(' ')[0];
       const expires = new Date(rawDate + 'T00:00:00');
       const today = new Date();
       const diffDays = Math.max(0, Math.ceil((expires - today) / (1000 * 60 * 60 * 24)));
@@ -136,11 +136,34 @@ window.onload = function () {
 
       // Тариф
       document.getElementById('tariff').textContent = data.tariff || 'Не указан';
+
+      // Устройства
+      const container = document.getElementById('devices-container');
+      container.innerHTML = '';
+
+      if (Array.isArray(data.devices) && data.devices.length > 0) {
+        data.devices.forEach(device => {
+          const div = document.createElement('div');
+          div.className = 'device-item';
+          div.style.marginBottom = '10px';
+          div.style.padding = '8px 12px';
+          div.style.backgroundColor = '#f2f2f2';
+          div.style.borderRadius = '6px';
+          div.style.fontSize = '14px';
+          div.textContent = `${device.type} — ID: ${device.id}`;
+          container.appendChild(div);
+        });
+      } else {
+        const div = document.createElement('div');
+        div.textContent = 'Нет подключённых устройств';
+        container.appendChild(div);
+      }
     })
     .catch(error => {
       document.getElementById('balance').textContent = 'Ошибка';
       document.getElementById('days_left').textContent = '-';
       document.getElementById('tariff').textContent = '-';
+      document.getElementById('devices-container').textContent = 'Ошибка загрузки';
       console.error('Ошибка запроса:', error);
     });
 };
