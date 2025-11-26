@@ -144,13 +144,11 @@ window.onload = function () {
       if (Array.isArray(data.devices) && data.devices.length > 0) {
         data.devices.forEach(device => {
           const div = document.createElement('div');
-          div.className = 'device-item';
-          div.style.marginBottom = '10px';
-          div.style.padding = '8px 12px';
-          div.style.backgroundColor = '#f2f2f2';
-          div.style.borderRadius = '6px';
-          div.style.fontSize = '14px';
-          div.textContent = `${device.type} — ID: ${device.id}`;
+          div.className = 'device-box';
+          div.innerHTML = `
+            <p>📱 ${device.type}</p>
+            <p class="device-id">ID: ${device.id}</p>
+          `;
           container.appendChild(div);
         });
       } else {
@@ -169,11 +167,10 @@ window.onload = function () {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: deviceId, type: deviceType })
-        })
+            })
         .then(res => res.json())
         .then(res => {
           console.log("Устройство добавлено:", res);
-          // Можно перезагрузить страницу, чтобы сразу увидеть новое устройство
           location.reload();
         })
         .catch(err => {
@@ -193,17 +190,15 @@ window.onload = function () {
 // Определение типа устройства
 function detectDeviceType() {
   const ua = navigator.userAgent;
-
   if (/android/i.test(ua)) return "Android";
   if (/iPad|iPhone|iPod/.test(ua)) return "iOS";
   if (/Windows/.test(ua)) return "Windows";
   if (/Macintosh/.test(ua)) return "macOS";
   if (/Linux/.test(ua)) return "Linux";
-
   return "Неизвестное устройство";
 }
 
-// Генерация ID устройства (можно заменить на что-то более стабильное)
+// Генерация ID устройства
 function generateDeviceId() {
   const base = navigator.userAgent + navigator.platform;
   return 'dev-' + btoa(base).substr(0, 10);
