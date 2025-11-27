@@ -217,8 +217,7 @@ function detectDeviceType() {
 
 // Генерация ID устройства с учётом Telegram ID и типа устройства
 function generateDeviceId(tgId) {
-  const deviceType = detectDeviceType();
-  return 'dev-' + tgId + '-' + deviceType;
+  return 'dev-' + tgId;
 }
 
 // Декодирование UTF-8
