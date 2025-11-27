@@ -128,6 +128,25 @@ window.onload = function () {
       const bonus = typeof data.bonus === 'number' ? data.bonus : 0;
       document.getElementById('balance').textContent = `${bonus} ₽`;
 
+      // Реферальная ссылка
+const referralLink = `https://t.me/WGVPN_official_bot?start=ref${tgId}`;
+
+// Кнопка "Скопировать ссылку"
+window.copyLink = function () {
+  navigator.clipboard.writeText(referralLink).then(() => {
+    alert("Ссылка скопирована!");
+  });
+};
+
+// Кнопка "Отправить в Telegram"
+const telegramBtn = document.querySelector('a[href*="WGVPN_official_bot"]');
+if (telegramBtn) {
+  telegramBtn.setAttribute(
+    "href",
+    `https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=Присоединяйся и получи бонус!`
+  );
+}
+
       // Дни до окончания
       const rawDate = (data.expires || '').split(' ')[0];
       const expires = new Date(rawDate + 'T00:00:00');
