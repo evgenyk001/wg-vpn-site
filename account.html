@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
@@ -146,9 +147,9 @@ window.onload = function () {
           const div = document.createElement('div');
           div.className = 'device-box';
           div.innerHTML = `
-            <p>📱 ${device.type}</p>
-            <p class="device-id">ID: dev-${tgId}</p>
-          `;
+  <p>${getDeviceIcon(device.type)} ${device.type}</p>
+  <p class="device-id">ID: dev-${tgId}</p>
+`;
           container.appendChild(div);
         });
       } else {
@@ -220,6 +221,23 @@ function generateDeviceId(tgId) {
   return 'dev-' + tgId;
 }
 
+function getDeviceIcon(type) {
+  switch (type.toLowerCase()) {
+    case 'android':
+      return '<i class="fab fa-android" style="color:#3ddc84;"></i>';
+    case 'ios':
+      return '<i class="fab fa-apple" style="color:#000;"></i>';
+    case 'windows':
+      return '<i class="fab fa-windows" style="color:#0078d7;"></i>';
+    case 'macos':
+      return '<i class="fab fa-apple" style="color:#000;"></i>';
+    case 'linux':
+      return '<i class="fab fa-linux" style="color:#333;"></i>';
+    default:
+      return '<i class="fas fa-mobile-alt" style="color:#666;"></i>';
+  }
+}
+  
 // Декодирование UTF-8
 function decodeUTF8(str) {
   try {
