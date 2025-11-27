@@ -143,11 +143,11 @@ html, body {
 .balance-box .balance {
   font-size: 28px;
   font-weight: bold;
-  color: #e53935; /* красный акцент */
+  color: #e6e6e6; /* красный акцент */
 }
 
 .balance-box .status {
-  color: #ff9800; /* оранжевый статус */
+  color: #e6e6e6; /* оранжевый статус */
   font-weight: bold;
 }
 
