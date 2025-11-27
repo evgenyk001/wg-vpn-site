@@ -112,11 +112,11 @@ window.onload = function () {
     return;
   }
 
-  fetch(https://api.wg-vpn.ru/api/user/${tgId})
+  fetch(`https://api.wg-vpn.ru/api/user/${tgId}`)
     .then(response => response.json())
     .then(data => {
-      if (data.error  !data.expires  !data.tariff) {
-        document.getElementById('balance').textContent = 'Ошибка';
+      if (!data || typeof data !== 'object') {
+        document.getElementById('balance').textContent = 'Ошибка: нет данных';
         document.getElementById('days_left').textContent = '-';
         document.getElementById('tariff').textContent = '-';
         document.getElementById('devices-container').textContent = 'Ошибка загрузки устройств';
@@ -125,17 +125,17 @@ window.onload = function () {
 
       // Баланс
       const bonus = typeof data.bonus === 'number' ? data.bonus : 0;
-      document.getElementById('balance').textContent = ${bonus} ₽;
+      document.getElementById('balance').textContent = `${bonus} ₽`;
 
       // Дни до окончания
-      const rawDate = data.expires.split(' ')[0];
+      const rawDate = (data.expires || '').split(' ')[0];
       const expires = new Date(rawDate + 'T00:00:00');
       const today = new Date();
       const diffDays = Math.max(0, Math.ceil((expires - today) / (1000 * 60 * 60 * 24)));
-      document.getElementById('days_left').textContent = Осталось ${diffDays} дней;
+      document.getElementById('days_left').textContent = `Осталось ${diffDays} дней`;
 
       // Тариф
-      document.getElementById('tariff').textContent = data.tariff || 'Не указан';
+      document.getElementById('tariff').textContent = decodeUTF8(data.tariff || 'Не указан');
 
       // Устройства
       const container = document.getElementById('devices-container');
@@ -157,25 +157,42 @@ window.onload = function () {
         container.appendChild(div);
       }
 
-      // === Автоматическое добавление текущего устройства ===
+      // === Автоматическое добавление или обновление текущего устройства ===
       const deviceType = detectDeviceType();
-      const deviceId = generateDeviceId();
+      const deviceId = generateDeviceId(tgId);
 
-      const alreadyExists = Array.isArray(data.devices) && data.devices.some(d => d.id === deviceId);
-      if (!alreadyExists) {
+      const existingDevice = Array.isArray(data.devices)
+        ? data.devices.find(d => d.id === deviceId)
+        : null;
+
+      if (!existingDevice) {
         fetch(`https://api.wg-vpn.ru/api/user/${tgId}/add-device`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: deviceId, type: deviceType })
-            })
-        .then(res => res.json())
-        .then(res => {
-          console.log("Устройство добавлено:", res);
-          location.reload();
         })
-        .catch(err => {
-          console.error("Ошибка добавления устройства:", err);
-        });
+          .then(res => res.json())
+          .then(res => {
+            console.log("Устройство добавлено:", res);
+            location.reload();
+          })
+          .catch(err => {
+            console.error("Ошибка добавления устройства:", err);
+          });
+      } else if (existingDevice.type !== deviceType) {
+        fetch(`https://api.wg-vpn.ru/api/user/${tgId}/update-device`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: deviceId, type: deviceType })
+        })
+          .then(res => res.json())
+          .then(res => {
+            console.log("Тип устройства обновлён:", res);
+            location.reload();
+          })
+          .catch(err => {
+            console.error("Ошибка обновления устройства:", err);
+          });
       }
     })
     .catch(error => {
@@ -198,10 +215,19 @@ function detectDeviceType() {
   return "Неизвестное устройство";
 }
 
-// Генерация ID устройства
-function generateDeviceId() {
-  const base = navigator.userAgent + navigator.platform;
+// Генерация ID устройства с учётом Telegram ID
+function generateDeviceId(tgId) {
+  const base = tgId + navigator.userAgent + navigator.platform;
   return 'dev-' + btoa(base).substr(0, 10);
+}
+
+// Декодирование UTF-8
+function decodeUTF8(str) {
+  try {
+    return decodeURIComponent(escape(str));
+  } catch {
+    return str;
+  }
 }
 </script>
 </body>
