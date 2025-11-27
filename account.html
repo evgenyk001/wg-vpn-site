@@ -112,10 +112,10 @@ window.onload = function () {
     return;
   }
 
-  fetch(`https://api.wg-vpn.ru/api/user/${tgId}`)
+  fetch(https://api.wg-vpn.ru/api/user/${tgId})
     .then(response => response.json())
     .then(data => {
-      if (data.error || !data.expires || !data.tariff) {
+      if (data.error  !data.expires  !data.tariff) {
         document.getElementById('balance').textContent = 'Ошибка';
         document.getElementById('days_left').textContent = '-';
         document.getElementById('tariff').textContent = '-';
@@ -125,14 +125,14 @@ window.onload = function () {
 
       // Баланс
       const bonus = typeof data.bonus === 'number' ? data.bonus : 0;
-      document.getElementById('balance').textContent = `${bonus} ₽`;
+      document.getElementById('balance').textContent = ${bonus} ₽;
 
       // Дни до окончания
       const rawDate = data.expires.split(' ')[0];
       const expires = new Date(rawDate + 'T00:00:00');
       const today = new Date();
       const diffDays = Math.max(0, Math.ceil((expires - today) / (1000 * 60 * 60 * 24)));
-      document.getElementById('days_left').textContent = `Осталось ${diffDays} дней`;
+      document.getElementById('days_left').textContent = Осталось ${diffDays} дней;
 
       // Тариф
       document.getElementById('tariff').textContent = data.tariff || 'Не указан';
