@@ -121,7 +121,7 @@ html, body {
   border-radius: 8px;
   padding: 14px 16px;
   margin: 12px 0;
-  text-align: left;
+  text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* лёгкая тень */
   font-family: 'Segoe UI', sans-serif;
   transition: background-color 0.3s ease;
