@@ -215,10 +215,10 @@ function detectDeviceType() {
   return "Неизвестное устройство";
 }
 
-// Генерация ID устройства с учётом Telegram ID
+// Генерация ID устройства с учётом Telegram ID и типа устройства
 function generateDeviceId(tgId) {
-  const base = tgId + navigator.userAgent + navigator.platform;
-  return 'dev-' + btoa(base).substr(0, 10);
+  const deviceType = detectDeviceType();
+  return 'dev-' + tgId + '-' + deviceType;
 }
 
 // Декодирование UTF-8
