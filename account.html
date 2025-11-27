@@ -147,7 +147,7 @@ window.onload = function () {
           div.className = 'device-box';
           div.innerHTML = `
             <p>📱 ${device.type}</p>
-            <p class="device-id">ID: ${device.id}</p>
+            <p class="device-id">ID: dev-${tgId}</p>
           `;
           container.appendChild(div);
         });
@@ -229,6 +229,6 @@ function decodeUTF8(str) {
     return str;
   }
 }
-</script>
+</script>  
 </body>
 </html>
